@@ -2,7 +2,7 @@
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { fetchOrLoad } from "https://js.sabae.cc/fetchOrLoad.js";
 import { fetchBinAsBrowser } from "./fetchBinAsBrowser.js";
-import { extractString, extractStrings } from "./extractString.js";
+import { extractString, extractStrings, extractList } from "./extractString.js";
 
 const fn = "human_organs.csv";
 const list = await CSV.fetchJSON(fn);
@@ -16,7 +16,12 @@ for (const item of list) {
   //console.log(ogp);
   const fns = extractStrings(html, "s3Location:\"", "\"");
   const id1 = extractString(html, "prefectRunId:\"", "\"");
-  const id2 = extractString(html, "\"Output\",true,", ",") || 3420; // ??
+  let id2 = extractString(html, "\"Output\",true,", ",");
+  if (id2 == null) {
+    const ss = extractList(html, "\"Output\",1,true,", "))");
+    id2 = ss[2] < 100 ? ss[3] : ss[2];
+ //| 3420; // ??  
+  }
   //console.log(fns, id1, id2);
   if (id2 == null) Deno.exit();
   const saves = ["jpg", "glb", "stl"];
