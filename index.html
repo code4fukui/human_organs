@@ -6,6 +6,7 @@
 <main id=main></main>
 <hr>
 <a href=https://github.com/code4fukui/human_organs>src on GitHub</a><br>
+DATA: <a href=https://3d.nih.gov/>NIH 3D</a><br>
 
 <script type="module">
 import { CSV } from "https://code4fukui.github.io/CSV/CSV.js";
@@ -18,7 +19,8 @@ for (const item of list) {
       <img src=${item.url_jpg}><br>
       <h2>${item.name_ja} (${item.name})</h2>
       <div>download: <a href=${item.url_glb}>GLB</a>, <a href=${item.url_stl}>STL</a></div>
-      <div><a href=${item.url_src}>src</a></div>
+      <div>by ${item.author}</div>
+      <div><a href=${item.url_src}>src</a> (license: ${item.license})</div>
     </div>
   `;
   ss.push(html);
@@ -27,3 +29,14 @@ main.innerHTML = ss.join("\n");
 
 </script>
 
+<style>
+body {
+  max-width: 100vh;
+}
+img {
+  width: 100%;
+}
+</style>
+
+</body>
+</html>

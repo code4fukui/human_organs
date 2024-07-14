@@ -25,7 +25,7 @@ for (const item of list) {
     if (!saves.includes(ext)) continue;
     //if (!fn.endsWith(".jpg")) continue;
     const fn2 = fn.substring(fn.lastIndexOf("/") + 1);
-    const fn3 = ext + "/" + fn2;
+    const fn3 = ext + "/" + fn2.replace(/\%2520/g, "_");
     try {
       await Deno.readFile(fn3);
     } catch (e) {
@@ -33,7 +33,7 @@ for (const item of list) {
       const bin = await fetchBinAsBrowser(url);
       await Deno.writeFile(fn3, bin);
     }
-    item["url_" + ext] = "https://code4fukui.github.io/human_organs/" + ext + "/" + fn3;
+    item["url_" + ext] = "https://code4fukui.github.io/human_organs/" + fn3;
   }
   // https://3d.nih.gov/api/submissions/26476/runs/34f0188e-277e-4641-96ca-ef846f6b8946/output-files/vh_m_heart_thumb_NIH3D.png
   // https://3d.nih.gov/api/submissions/26476/runs/34f0188e-277e-4641-96ca-ef846f6b8946/output-files/vh_m_heart_thumb_NIH3D.jpg

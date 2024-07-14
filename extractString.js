@@ -7,7 +7,6 @@ export const extractStrings = (s, start, end) => {
     const m = s.indexOf(end, n + start.length);
     if (m < 0) break;
     const fn0 = s.substring(n + start.length, m);
-    console.log(fn0);
     const fn = JSON.parse(`"${fn0}"`);
     res.push(fn);
     i = m + end.length;
