@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>human organs</title>
+</head><body>
+
+<h1>human organs</h1>
+<main id=main></main>
+<hr>
+<a href=https://github.com/code4fukui/human_organs>src on GitHub</a><br>
+
+<script type="module">
+import { CSV } from "https://code4fukui.github.io/CSV/CSV.js";
+
+const list = await CSV.fetchJSON("human_organs.csv");
+const ss = [];
+for (const item of list) {
+  const html = `
+    <div>
+      <img src=${item.url_jpg}><br>
+      <h2>${item.name_ja} (${item.name})</h2>
+      <div>download: <a href=${item.url_glb}>GLB</a>, <a href=${item.url_stl}>STL</a></div>
+      <div><a href=${item.url_src}>src</a></div>
+    </div>
+  `;
+  ss.push(html);
+}
+main.innerHTML = ss.join("\n");
+
+</script>
+
