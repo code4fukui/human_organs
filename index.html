@@ -16,9 +16,9 @@ const ss = [];
 for (const item of list) {
   const html = `
     <div>
-      <img src=${item.url_jpg}><br>
       <h2>${item.name_ja} (${item.name})</h2>
-      <div>download: <a href=${item.url_glb}>GLB</a>, <a href=${item.url_stl}>STL</a></div>
+      <a href=${item.url_src}><img src=${item.url_jpg}></a><br>
+      <div>3D DATA: <a href=${item.url_glb}>GLB</a>, <a href=${item.url_stl}>STL</a></div>
       <div>by ${item.author}</div>
       <div><a href=${item.url_src}>src</a> (license: ${item.license})</div>
     </div>
@@ -31,10 +31,45 @@ main.innerHTML = ss.join("\n");
 
 <style>
 body {
-  max-width: 100vh;
+  background-color: #f8f8f8;
+}
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background-color: white;
+}
+main > div {
+  text-align: center;
+  margin: .5em;
+  border: black 1px solid;
+  padding: .5em;
 }
 img {
-  width: 100%;
+  width: 20vw;
+}
+@media (max-aspect-ratio: 4/3) {
+  main {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  img {
+    width: 25vw;
+  }
+}
+@media (max-aspect-ratio: 1/1) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+  img {
+    width: 30vw;
+  }
+}
+@media (max-aspect-ratio: 3/4) {
+  main {
+    grid-template-columns: 1fr;
+  }
+  img {
+    width: 50vw;
+  }
 }
 </style>
 
