@@ -1,8 +1,8 @@
 //import { parseOGP } from "https://js.sabae.cc/parseOGP.js";
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { fetchOrLoad } from "https://js.sabae.cc/fetchOrLoad.js";
-import { fetchBinAsBrowser } from "./fetchBinAsBrowser.js";
-import { extractString, extractStrings, extractList } from "./extractString.js";
+import { fetchBinAsBrowser } from "https://js.sabae.cc/fetchBinAsBrowser.js";
+import { extractString, extractStrings, extractList } from "https://js.sabae.cc/extractString.js";
 
 const fn = "human_organs.csv";
 const list = await CSV.fetchJSON(fn);
