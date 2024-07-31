@@ -14,11 +14,12 @@ import { CSV } from "https://code4fukui.github.io/CSV/CSV.js";
 const list = await CSV.fetchJSON("human_organs.csv");
 const ss = [];
 for (const item of list) {
+  const stl2 = item.url_stl_3dprinter ? ` (<a href=${item.url_stl_3dprinter}>for 3D printer</a>)` : "";
   const html = `
     <div>
       <h2>${item.name_ja} (${item.name})</h2>
       <a href=${item.url_src}><img src=${item.url_jpg}></a><br>
-      <div>3D DATA: <a href=${item.url_glb}>GLB</a>, <a href=${item.url_stl}>STL</a></div>
+      <div>3D DATA: <a href=${item.url_glb}>GLB</a>, <a href=${item.url_stl}>STL</a>${stl2}</div>
       <div>by ${item.author}</div>
       <div><a href=${item.url_src}>src</a> (license: ${item.license})</div>
     </div>
